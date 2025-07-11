@@ -22,3 +22,5 @@ class TransactionSchema(BaseModel):
     sender_name: str
     amount: float
     date: datetime
+
+

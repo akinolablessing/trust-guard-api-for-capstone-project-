@@ -14,3 +14,12 @@ engine = create_engine(data_base)
 session_maker = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+
+
+def get_db():
+    db = session_maker()
+    try:
+        yield db
+    finally:
+        db.close()
