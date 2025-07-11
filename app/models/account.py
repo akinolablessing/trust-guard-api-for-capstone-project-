@@ -9,4 +9,3 @@ class Account(Base):
     bankName = Column(String, nullable=False)
     accountNumber = Column(String,unique=True, nullable=False)
 
-    #
