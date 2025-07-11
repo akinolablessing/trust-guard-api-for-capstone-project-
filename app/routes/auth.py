@@ -5,15 +5,11 @@ from app.models.agent import Agent
 from app.schema.schemas import AgentCreate, AgentLogin, TokenResponse
 from app.auth.hash import hash_password, verify_password
 from app.auth.jwt_handler import create_access_token
+from app.db.data_base import get_db
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
 
 @router.post("/register")
 def register(agent: AgentCreate, db: Session = Depends(get_db)):
