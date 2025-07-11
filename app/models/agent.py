@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from app.models.account import Account
-from app.models.transaction import Transaction
+from app.apis.models.account import Account
+from app.apis.models.transaction import Transaction
 
 
 @dataclass
