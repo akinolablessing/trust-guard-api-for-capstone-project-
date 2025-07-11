@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 
+from sqlalchemy import Column, String
+
 
 @dataclass
 class ReceiptScan:
-    parsed_text: str
+    __tablename__ = "receipt_scan"
+    parsed_text = Column(String, nullable=False)
