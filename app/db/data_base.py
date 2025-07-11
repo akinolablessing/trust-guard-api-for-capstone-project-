@@ -11,14 +11,14 @@ load_dotenv()
 data_base = os.getenv("DATABASE_URL")
 engine = create_engine(data_base)
 
-session_maker = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
 
 
 def get_db():
-    db = session_maker()
+    db = SessionLocal()
     try:
         yield db
     finally:
