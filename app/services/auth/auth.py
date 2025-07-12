@@ -1,8 +1,8 @@
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.auth.hash import hash_password, verify_password
-from app.auth.jwt_handler import create_access_token
+from app.security.hash import hash_password, verify_password
+from app.security.jwt_handler import create_access_token
 from app.db.data_base import get_db
 from app.models.agent import Agent
 from app.schema.schemas import AgentCreate, AgentLogin
