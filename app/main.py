@@ -1,19 +1,17 @@
 from fastapi import FastAPI
-from app.config.settings import SECRET_KEY, ALGORITHM
+from app.db.data_base import Base, engine
 
-from app.routes import auth
+# 👇 Import all your models here before calling create_all
+from app.models import account, agent  # adjust to your actual model paths
+
+Base.metadata.create_all(bind=engine)
+
+from app.controller.auth import router as auth_router
 
 app = FastAPI()
-app.include_router(auth.router)
 
-app = FastAPI()
+app.include_router(auth_router)
 
-
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
-#
-#
-# @app.get("/hello/{name}")
-# async def say_hello(name: str):
-#     return {"message": f"Hello {name}"}
+@app.get("/")
+def root():
+    return {"message": "Welcome to Transfer Check API"}

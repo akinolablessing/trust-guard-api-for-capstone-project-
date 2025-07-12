@@ -23,13 +23,13 @@ def register(agent: AgentCreate, db: Session = Depends(get_db)):
     db.add(new_agent)
     db.commit()
     db.refresh(new_agent)
-    return {"message": "Agent registered successfully"}
+    token = create_access_token(new_agent)
+    return {"message": "Agent registered successfully" , "access_token": token}
 
 
 def login(agent: AgentLogin, db: Session = Depends(get_db)):
     db_agent = db.query(Agent).filter(Agent.email == agent.email).first()
     if not db_agent or not verify_password(agent.password, db_agent.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
-
-    token = create_access_token({"sub": db_agent.email})
+    token = create_access_token(db_agent)
     return {"access_token": token, "token_type": "bearer"}
