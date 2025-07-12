@@ -6,7 +6,7 @@ from app.schema.schemas import AgentCreate, AgentLogin, TokenResponse
 from app.db.data_base import get_db
 from app.services.auth import auth
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(prefix="/security", tags=["Authentication"])
 
 
 
